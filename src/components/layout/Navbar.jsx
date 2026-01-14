@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Magnetic from '../ui/Magnetic'; 
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +20,6 @@ const Navbar = () => {
     }
   });
 
-  // ADDED "Home" HERE
   const navLinks = [
     { name: 'Home', href: '#' },
     { name: 'Services', href: '#services' },
@@ -45,7 +45,7 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           
-          {/* --- LOGO IMAGE (KEPT AS REQUESTED) --- */}
+          {/* LOGO */}
           <a href="#" className="relative group z-50">
             <img 
               src="/images/logo.jpg" 
@@ -54,17 +54,21 @@ const Navbar = () => {
             />
           </a>
 
-          {/* DESKTOP LINKS */}
-          <div className="hidden md:flex space-x-12 items-center">
+          {/* DESKTOP LINKS  */}
+          <div className="hidden md:flex space-x-8 items-center"> {/* Changed space-x-12 to space-x-8 to give Magnetic room */}
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`font-sans text-sm tracking-[0.2em] uppercase transition-colors duration-300 relative group ${isScrolled ? 'text-pot-charcoal' : 'text-white/90'}`}
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] bg-pot-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-              </a>
+              <Magnetic key={link.name}>
+                <a
+                  href={link.href}
+                  className={`font-sans text-sm tracking-[0.2em] uppercase transition-colors duration-300 relative group px-4 py-2 ${ // Added px-4 py-2 for bigger hover target
+                    isScrolled ? 'text-pot-charcoal' : 'text-white/90'
+                  }`}
+                >
+                  {link.name}
+                  {/* The underline animation */}
+                  <span className="absolute bottom-1 left-1/2 w-0 h-[1px] bg-pot-gold transition-all duration-300 group-hover:w-1/2 group-hover:left-1/4"></span>
+                </a>
+              </Magnetic>
             ))}
           </div>
 
