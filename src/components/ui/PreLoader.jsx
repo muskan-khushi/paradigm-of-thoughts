@@ -5,11 +5,10 @@ const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate asset loading time (2.5 seconds)
-    // In a real app, you might track actual image loading here
+    // Shorter load time for better UX (2.0s)
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -18,28 +17,31 @@ const Preloader = () => {
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0f0f0f]"
+          // UPDATED: Background is now Warm White to match site theme
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#f4f4f0]"
           initial={{ y: 0 }}
-          exit={{ y: "-100%" }} // Slide up like a curtain
+          exit={{ y: "-100%" }}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
         >
-          {/* Pulsing Logo Text */}
-          <motion.h1 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          {/* --- LOGO IMAGE (KEPT AS REQUESTED) --- */}
+          <motion.img 
+            src="/images/logo.jpg"
+            alt="Studio POT"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            className="font-serif text-4xl md:text-6xl text-[#E6E5E3] tracking-tight mix-blend-difference z-10"
-          >
-            POT
-          </motion.h1>
+            transition={{ duration: 0.8 }}
+            className="h-20 md:h-32 w-auto object-contain z-10"
+          />
 
           {/* Loading Line */}
-          <div className="w-64 h-[1px] bg-white/10 mt-8 relative overflow-hidden">
+          {/* UPDATED: bg-gray-300 so it is visible on the white background */}
+          <div className="w-64 h-[1px] bg-gray-300 mt-8 relative overflow-hidden">
             <motion.div 
               className="absolute inset-0 bg-pot-gold"
               initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
-              transition={{ duration: 2.3, ease: "easeInOut" }}
+              transition={{ duration: 1.8, ease: "easeInOut" }}
             />
           </div>
 

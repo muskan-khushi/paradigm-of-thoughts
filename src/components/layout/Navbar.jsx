@@ -4,17 +4,14 @@ import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false); // New state for hiding
+  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-
-    // 1. Keep your existing background design logic
     setIsScrolled(latest > 50);
 
-    // 2. Add the "Smart Scroll" logic (Hide on down, Show on up)
     if (latest > previous && latest > 150) {
       setIsHidden(true);
     } else {
@@ -22,7 +19,9 @@ const Navbar = () => {
     }
   });
 
+  // ADDED "Home" HERE
   const navLinks = [
+    { name: 'Home', href: '#' },
     { name: 'Services', href: '#services' },
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
@@ -32,16 +31,12 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        // These variants handle the hiding/showing
         variants={{
           visible: { y: 0 },
           hidden: { y: "-100%" },
         }}
-        // We toggle between hidden and visible based on scroll direction
         animate={isHidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        
-        // YOUR EXACT DESIGN CLASSES BELOW
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ease-in-out ${
           isScrolled 
             ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm' 
@@ -49,15 +44,17 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-          {/* LOGO (Your exact code) */}
+          
+          {/* --- LOGO IMAGE (KEPT AS REQUESTED) --- */}
           <a href="#" className="relative group z-50">
-            <h1 className={`font-serif text-2xl md:text-3xl font-semibold tracking-tighter transition-colors duration-300 ${isScrolled ? 'text-pot-black' : 'text-white'}`}>
-              POT
-              <span className="text-pot-gold text-4xl leading-none">.</span>
-            </h1>
+            <img 
+              src="/images/logo.jpg" 
+              alt="Studio POT" 
+              className="h-10 md:h-12 w-auto object-contain" 
+            />
           </a>
 
-          {/* DESKTOP LINKS (Your exact code) */}
+          {/* DESKTOP LINKS */}
           <div className="hidden md:flex space-x-12 items-center">
             {navLinks.map((link) => (
               <a
@@ -71,7 +68,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* MOBILE TOGGLE (Your exact code) */}
+          {/* MOBILE TOGGLE */}
           <button 
             className={`md:hidden z-50 ${isScrolled ? 'text-pot-black' : 'text-white'}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -81,7 +78,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* MOBILE MENU OVERLAY (Added basic logic to make the toggle work if needed) */}
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
