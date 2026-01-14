@@ -1,4 +1,3 @@
-```markdown
 # Studio POT
 
 ### Paradigm of Thoughts
