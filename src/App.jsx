@@ -2,6 +2,8 @@ import { ReactLenis } from '@studio-freight/react-lenis';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
+import Projects from './components/sections/Projects'; 
+import Gallery from './components/sections/Gallery'; 
 import CustomCursor from './components/ui/CustomCursor';
 
 function App() {
@@ -17,6 +19,10 @@ function App() {
           
           {/* 2. The Services Section (Scroll down to see this) */}
           <Services /> 
+
+          <Projects />
+
+          <Gallery />
           
           {/* 3. Placeholder for Projects */}
           <section className="h-screen flex items-center justify-center bg-white">
