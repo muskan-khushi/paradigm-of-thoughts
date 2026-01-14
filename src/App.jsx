@@ -8,12 +8,15 @@ import About from './components/sections/About';
 import Contact from './components/sections/Contact'; 
 import CustomCursor from './components/ui/CustomCursor';
 import Preloader from './components/ui/Preloader';
+import Grain from './components/ui/Grain'; 
 
 function App() {
   return (
     <ReactLenis root>
       <Preloader />
       <CustomCursor />
+      <Grain />
+      
 
       <div className="font-sans bg-[#f4f4f0] min-h-screen cursor-none selection:bg-pot-gold selection:text-white">
         
