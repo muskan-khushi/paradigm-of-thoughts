@@ -1,4 +1,5 @@
 import { ReactLenis } from '@studio-freight/react-lenis';
+import { useScroll, useSpring, motion } from 'framer-motion'; 
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
@@ -11,28 +12,39 @@ import Preloader from './components/ui/Preloader';
 import Grain from './components/ui/Grain'; 
 
 function App() {
+  const { scrollYProgress } = useScroll();
+  
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <ReactLenis root>
-      <Preloader />
-      <CustomCursor />
-      <Grain />
-      
+      <>
+        <Preloader />
+        <CustomCursor />
+        <Grain />
 
-      <div className="font-sans bg-[#f4f4f0] min-h-screen cursor-none selection:bg-pot-gold selection:text-white">
-        
-        <Navbar />
-        
-        <main>
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-[4px] bg-pot-gold origin-left z-[100]"
+          style={{ scaleX }}
+        />
+
+        <div className="font-sans bg-[#f4f4f0] min-h-screen cursor-none selection:bg-pot-gold selection:text-white">
+          <Navbar />
           
-          <Hero />
-          <Services /> 
-          <Projects />
-          <Gallery />
-          <About />
-          <Contact />
-          
-        </main>
-      </div>
+          <main>
+            <Hero />
+            <Services /> 
+            <Projects />
+            <Gallery />
+            <About />
+            <Contact />
+          </main>
+        </div>
+      </>
     </ReactLenis>
   );
 }

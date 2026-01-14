@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import ParallaxImage from '../ui/ParallaxImage'; // <--- IMPORT THE FEATURE
 
 // --- Updated Data with Specific Image Lists ---
 const projects = [
@@ -83,7 +84,7 @@ const ProjectItem = ({ project, index, onOpen }) => {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  // We keep opacity for the fade in/out of the whole block
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0]);
 
   return (
@@ -110,16 +111,22 @@ const ProjectItem = ({ project, index, onOpen }) => {
           </h2>
         </div>
 
-        {/* IMAGE CONTAINER - Added hover scale effect */}
-        <div className="relative w-full max-w-6xl aspect-video md:aspect-auto md:h-[70vh] flex items-center justify-center overflow-hidden">
-          <motion.img 
-            style={{ y }} 
+        {/* IMAGE CONTAINER */}
+        <div className="relative w-full max-w-6xl aspect-video md:aspect-auto md:h-[70vh] flex items-center justify-center shadow-2xl">
+          
+          {/* --- THE PARALLAX UPDATE --- */}
+          {/* We replaced the motion.img with ParallaxImage. 
+              The 'group-hover' scale effect is handled by CSS on the wrapper in ParallaxImage or global styles if desired, 
+              but ParallaxImage has its own scale logic.
+          */}
+          <ParallaxImage 
             src={project.coverImage} 
             alt={project.title} 
-            className="max-w-full max-h-full object-contain shadow-2xl transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full"
           />
+
           {/* View Gallery Indicator */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none z-20">
             <span className="font-sans text-white tracking-widest uppercase text-sm border-b border-white pb-1">View Gallery</span>
           </div>
         </div>
