@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
 
-// --- DATA ---
 const services = [
   {
     id: "01",
@@ -167,7 +166,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* --- ETHEREAL MODAL (FIXED) --- */}
       <AnimatePresence>
         {selectedService && (
           <motion.div
@@ -177,7 +175,6 @@ const Services = () => {
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-8"
             onClick={() => setSelectedService(null)}
           >
-            {/* Modal Container: Fixed height (85vh) + Hidden Overflow */}
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -193,7 +190,6 @@ const Services = () => {
                 <X size={24} />
               </button>
 
-              {/* Image Side - Stays Fixed */}
               <div className="w-full md:w-1/3 h-48 md:h-full relative flex-shrink-0">
                 <img src={selectedService.image} alt={selectedService.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20" />
@@ -203,8 +199,6 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Text Side - SCROLLS INDEPENDENTLY */}
-              {/* data-lenis-prevent is CRITICAL here */}
               <div 
                 className="w-full md:w-2/3 p-8 md:p-12 overflow-y-auto h-full"
                 data-lenis-prevent="true"

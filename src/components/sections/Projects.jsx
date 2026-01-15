@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import ParallaxImage from '../ui/ParallaxImage'; // <--- IMPORT THE FEATURE
+import ParallaxImage from '../ui/ParallaxImage'; 
 
-// --- Updated Data with Specific Image Lists ---
 const projects = [
   {
     id: 1,
@@ -84,13 +83,12 @@ const ProjectItem = ({ project, index, onOpen }) => {
     offset: ["start end", "end start"]
   });
 
-  // We keep opacity for the fade in/out of the whole block
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0]);
 
   return (
     <section 
       ref={ref} 
-      className="min-h-screen w-full flex flex-col items-center justify-center py-24 md:py-32 relative group cursor-pointer"
+      className="min-h-screen w-full flex flex-col items-center justify-center py-24 md:py-32 relative group cursor-none"
       onClick={() => onOpen(project)}
     >
       {/* Background Text */}
@@ -113,18 +111,11 @@ const ProjectItem = ({ project, index, onOpen }) => {
 
         {/* IMAGE CONTAINER */}
         <div className="relative w-full max-w-6xl aspect-video md:aspect-auto md:h-[70vh] flex items-center justify-center shadow-2xl">
-          
-          {/* --- THE PARALLAX UPDATE --- */}
-          {/* We replaced the motion.img with ParallaxImage. 
-              The 'group-hover' scale effect is handled by CSS on the wrapper in ParallaxImage or global styles if desired, 
-              but ParallaxImage has its own scale logic.
-          */}
           <ParallaxImage 
             src={project.coverImage} 
             alt={project.title} 
             className="w-full h-full"
           />
-
           {/* View Gallery Indicator */}
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none z-20">
             <span className="font-sans text-white tracking-widest uppercase text-sm border-b border-white pb-1">View Gallery</span>
@@ -163,17 +154,15 @@ const Projects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-[100] bg-[#0f0f0f] overflow-y-auto"
-            data-lenis-prevent="true" // Allows scrolling inside modal
+            data-lenis-prevent="true"
           >
-            {/* Close Button */}
             <button 
               onClick={() => setSelectedProject(null)}
-              className="fixed top-6 right-6 z-50 p-4 bg-black/50 rounded-full text-white hover:text-pot-gold transition-colors"
+              className="fixed top-6 right-6 z-50 p-4 bg-black/50 rounded-full text-white hover:text-pot-gold transition-colors cursor-none"
             >
               <X size={32} />
             </button>
 
-            {/* Modal Content */}
             <div className="container mx-auto px-6 py-24">
               <div className="text-center mb-24">
                  <span className="font-sans text-pot-gold text-xs tracking-[0.3em] uppercase block mb-4">
@@ -182,7 +171,6 @@ const Projects = () => {
                 <h2 className="font-serif text-5xl md:text-7xl text-white">{selectedProject.title}</h2>
               </div>
 
-              {/* Image Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 {selectedProject.galleryImages.map((src, index) => (
                   <motion.div

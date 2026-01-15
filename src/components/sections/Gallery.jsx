@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-// --- THE MASTER LIST (31 Images) ---
 const allImages = [
   // Embassy (7)
   "/images/embassy-1.jpg", "/images/embassy-2.jpg", "/images/embassy-3.jpg",
@@ -31,7 +30,7 @@ const Gallery = () => {
   });
 
   // Parallax Speeds
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]); // Reduced slightly to -150
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]); 
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -46,12 +45,10 @@ const Gallery = () => {
       <section ref={containerRef} className="bg-[#0f0f0f] min-h-[150vh] py-32 px-4 overflow-hidden relative z-30">
         
         {/* HEADER */}
-        {/* Changed mb-24 to mb-64 to create a safe zone for the parallax movement */}
         <div className="relative z-50 max-w-7xl mx-auto mb-64 text-center pointer-events-none">
           <h2 className="font-serif text-5xl md:text-8xl text-white opacity-90 mb-6 mix-blend-difference">
             The Archive
           </h2>
-          {/* Made text brighter (text-gray-300) for better visibility */}
           <p className="font-sans text-gray-300 tracking-[0.3em] uppercase text-sm font-medium relative z-50">
             A visual index of spaces, textures, and moments.
           </p>

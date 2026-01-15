@@ -55,12 +55,12 @@ const Navbar = () => {
           </a>
 
           {/* DESKTOP LINKS  */}
-          <div className="hidden md:flex space-x-8 items-center"> {/* Changed space-x-12 to space-x-8 to give Magnetic room */}
+          <div className="hidden md:flex space-x-8 items-center"> 
             {navLinks.map((link) => (
               <Magnetic key={link.name}>
                 <a
                   href={link.href}
-                  className={`font-sans text-sm tracking-[0.2em] uppercase transition-colors duration-300 relative group px-4 py-2 ${ // Added px-4 py-2 for bigger hover target
+                  className={`font-sans text-sm tracking-[0.2em] uppercase transition-colors duration-300 relative group px-4 py-2 ${ 
                     isScrolled ? 'text-pot-charcoal' : 'text-white/90'
                   }`}
                 >

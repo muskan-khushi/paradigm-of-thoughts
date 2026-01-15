@@ -31,7 +31,6 @@ const CustomCursor = () => {
     };
   }, []);
 
-  /* 🔥 LOCKED DARK-BG GOLD PALETTE (USED EVERYWHERE) */
   const cursorColor = 'rgba(255, 255, 255, 1)';
   const glowColor1 = 'rgba(255, 215, 0, 0.5)';
   const glowColor2 = 'rgba(218, 165, 32, 0.35)';

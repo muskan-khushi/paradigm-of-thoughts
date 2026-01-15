@@ -52,12 +52,8 @@ const Hero = () => {
             className="w-full h-full object-cover"
           />
           
-          {/* 2. THE FIX: Cinematic Overlay 
-             This adds a 30% black tint over the image so text is readable.
-          */}
           <div className="absolute inset-0 bg-black/30" />
           
-          {/* Optional: Gradient at the bottom to help the text specifically */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
@@ -81,7 +77,6 @@ const Hero = () => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            // Changed color to a Soft White (#E6E5E3) so it pops against the dark overlay
             className="font-serif text-5xl md:text-8xl leading-[1.1] text-[#E6E5E3] drop-shadow-md"
           >
             {heroSlides[currentSlide].title} <br />

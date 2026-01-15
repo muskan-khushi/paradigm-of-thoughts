@@ -19,7 +19,6 @@ const About = () => {
       ref={containerRef} 
       className="bg-[#FAF9F6] min-h-screen relative z-30 py-32 md:py-48 px-6 overflow-hidden"
     >
-      {/* --- LUXURY BACKGROUND ELEMENTS --- */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated gradient meshes */}
         <motion.div 
@@ -99,7 +98,6 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* 2. LUXURY CONTENT BLOCKS */}
         <div className="space-y-24 md:space-y-32">
           
           {/* Block 1 - Hero Statement */}
@@ -199,7 +197,6 @@ const About = () => {
 
         </div>
 
-        {/* 3. SIGNATURE - DRAMATIC */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -258,7 +255,6 @@ const About = () => {
   );
 };
 
-// --- LUXURY CONTENT BLOCK COMPONENT ---
 const LuxuryBlock = ({ children, delay = 0, number }) => {
   return (
     <motion.div 

@@ -20,7 +20,7 @@ const ParallaxImage = ({ src, alt, className }) => {
       <motion.img 
         src={src} 
         alt={alt}
-        style={{ y, scale: 1.15 }} // Scale up slightly so edges don't show when it moves
+        style={{ y, scale: 1.15 }} 
         className="w-full h-full object-cover"
       />
     </div>
