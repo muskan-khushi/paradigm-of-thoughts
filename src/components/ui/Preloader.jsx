@@ -25,7 +25,7 @@ const Preloader = () => {
         >
           {/* --- LOGO IMAGE (KEPT AS REQUESTED) --- */}
           <motion.img 
-            src="/images/logo.jpg"
+            src="/images/logo.png"
             alt="Studio POT"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

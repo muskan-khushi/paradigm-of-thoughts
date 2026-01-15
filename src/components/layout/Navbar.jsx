@@ -48,7 +48,7 @@ const Navbar = () => {
           {/* LOGO */}
           <a href="#" className="relative group z-50">
             <img 
-              src="/images/logo.jpg" 
+              src="/images/logo.png" 
               alt="Studio POT" 
               className="h-10 md:h-12 w-auto object-contain" 
             />
