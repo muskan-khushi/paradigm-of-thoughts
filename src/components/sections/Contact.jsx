@@ -126,8 +126,8 @@ const Contact = () => {
                 Follow Our Journey
               </h4>
               <div className="flex gap-4">
-                <SocialBtn href="https://instagram.com" icon={Instagram} label="Instagram" />
-                <SocialBtn href="https://linkedin.com" icon={Linkedin} label="LinkedIn" />
+                <SocialBtn href="https://instagram.com/paradigmofthoughts" icon={Instagram} label="Instagram" />
+                <SocialBtn href="https://linkedin.com/company/paradigm-of-thoughts" icon={Linkedin} label="LinkedIn" />
               </div>
             </motion.div>
           </motion.div>
